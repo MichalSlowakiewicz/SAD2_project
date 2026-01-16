@@ -9,7 +9,7 @@ import csv
 
 # configuration
 TRUTH_DIR = "Project_Data_Final"
-RESULTS_DIR = "Inference_Results_old"
+RESULTS_DIR = "Inference_Results"
 REPORT_FILE = "Final_Report_Part1.csv"
 
 def parse_ground_truth(filepath):
@@ -56,9 +56,12 @@ def parse_sif_result(filepath):
 
 def calculate_metrics(truth_edges, result_edges):
     """
-    Calculates standard metrics: TP, FP, FN, Precision, Recall, F1,
-    by comparing the results from Task 3 against the ground truth.
+    Calculates standard metrics (TP, FP, FN, Precision, Recall, F1)
+    and graph distance metrics (Structural Hamming Distance,
+    Jaccard Distance) by comparing the results from Task 3
+    against the ground truth.
     """
+    # classification metrics
     TP, FP, FN = 0, 0, 0
     all_nodes = set(truth_edges.keys()) | set(result_edges.keys())
 
@@ -77,7 +80,21 @@ def calculate_metrics(truth_edges, result_edges):
     recall = float(TP) / (TP + FN) if (TP + FN) > 0 else 0.0
     f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0.0
 
-    return TP, FP, FN, precision, recall, f1
+    # graph distance metrics
+
+    # structural hamming distance
+    shd = FP + FN
+
+    # jaccarad distance
+    union_count = TP + FP + FN
+
+    if union_count > 0:
+        jaccard_index = float(TP) / union_count
+        jaccard_distance = 1.0 - jaccard_index
+    else:
+        jaccard_distance = 0.0 if (len(truth_edges) == 0 and len(result_edges) == 0) else 1.0
+
+    return TP, FP, FN, precision, recall, f1, shd, jaccard_distance
 
 
 def run_evaluation():
@@ -88,7 +105,7 @@ def run_evaluation():
     with open(REPORT_FILE, 'w') as csvfile:
         writer = csv.writer(csvfile, delimiter=';')
         writer.writerow(
-            ["Network Size", "Dataset Type", "Scoring", "TP", "FP", "FN", "Precision", "Recall", "F1_Score"]
+            ["Network Size", "Dataset Type", "Scoring", "TP", "FP", "FN", "Precision", "Recall", "F1_Score", "SHD", "Jaccard Distance"]
         )
 
         result_files = glob.glob(os.path.join(RESULTS_DIR, "result_*.sif"))
@@ -111,10 +128,10 @@ def run_evaluation():
             result_graph = parse_sif_result(r_file)
 
             # calculating metrics
-            tp, fp, fn, prec, rec, f1 = calculate_metrics(truth_graph, result_graph)
+            tp, fp, fn, prec, rec, f1, shd, jacc_dist = calculate_metrics(truth_graph, result_graph)
 
             # saving results to '.csv'
-            writer.writerow([size_val, dataset_type, scoring, tp, fp, fn, "%.4f" % prec, "%.4f" % rec, "%.4f" % f1])
+            writer.writerow([size_val, dataset_type, scoring, tp, fp, fn, "%.4f" % prec, "%.4f" % rec, "%.4f" % f1, int(shd), "%.4f" % jacc_dist])
 
             # displaying some information about results
             if f1 > 0:

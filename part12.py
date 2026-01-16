@@ -243,16 +243,13 @@ if __name__ == "__main__":
     # chosen sizes of boolean networks
     sizes_to_test = [5, 7, 10, 16]
     # numbers of starts for each network
-    NUM_STARTS = 5
+    NUM_STARTS = 4
 
     # loop resposnsible for generating datasets
     for N in sizes_to_test:
-        print("\n" + "=" * 50)
-        print(" Network size: N = {}".format(N))
-        print("=" * 50)
 
         # number of steps for trajectories with asynchronous updates
-        ASYNC_STEPS = N * 20
+        ASYNC_STEPS = N * 5
 
         # generating network
         names, funcs = generate_random_bn_strings(num_nodes=N, max_parents=3)
