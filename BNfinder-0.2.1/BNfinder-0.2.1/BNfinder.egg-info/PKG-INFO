@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: BNfinder
+Version: 0.2.1
+Summary: Bayes Net Finder: an efficient and exact method for learning bayesian networks
+Home-page: http://bioputer.mimuw.edu.pl/software/BNfinder/
+Author: Bartek Wilczynski and Norbert Dojer
+Author-email: bartek@mimuw.edu.pl
+License: GNU GPL v.2
+Description: UNKNOWN
+Platform: UNKNOWN
