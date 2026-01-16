@@ -1,4 +1,0 @@
-old_files/
-.idea/
-venv/
-.gitignore
