@@ -236,14 +236,14 @@ def save_to_file(data, colnames, filename):
 if __name__ == "__main__":
 
     # output folder for datasets
-    output_dir = "Project_Data_Final"
+    output_dir = "Project_Data_Final_3"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
     # chosen sizes of boolean networks
     sizes_to_test = [5, 7, 10, 16]
     # numbers of starts for each network
-    NUM_STARTS = 4
+    NUM_STARTS = 300
 
     # loop resposnsible for generating datasets
     for N in sizes_to_test:

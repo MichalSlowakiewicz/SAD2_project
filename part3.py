@@ -8,8 +8,8 @@ import subprocess
 
 # configuration
 BNFINDER_SCRIPT = os.path.join("tool", "bnf")
-INPUT_DIR = "Project_Data_Part2" # change for part two INPUT_DIR = "Project_Data_Final"
-OUTPUT_DIR = "Inference_Results_Part2" # change for part two OUTPUT_DIR = "Inference_Results"
+INPUT_DIR = "Project_Data_Final_3"
+OUTPUT_DIR = "Inference_Results_3"
 SCORING_CRITERIA = ["MDL", "BDE"]
 # =================================================
 
@@ -41,7 +41,7 @@ def run_inference():
             # -s: scoring criterion
             # -n: output filename for the network
             # -v: prints progress
-            # -l: max number of parents (in project the limit set to 3); right now it's commented but we may uncomment it for faster computations
+            # -l: max number of parents (in project the limit set to 3)
             cmd = [
                 "python", BNFINDER_SCRIPT,
                 "-e", data_file_path,
