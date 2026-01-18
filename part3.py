@@ -8,8 +8,8 @@ import subprocess
 
 # configuration
 BNFINDER_SCRIPT = os.path.join("tool", "bnf")
-INPUT_DIR = "Project_Data_Final"
-OUTPUT_DIR = "Inference_Results"
+INPUT_DIR = "Project_Data_Part2" # change for part two INPUT_DIR = "Project_Data_Final"
+OUTPUT_DIR = "Inference_Results_Part2" # change for part two OUTPUT_DIR = "Inference_Results"
 SCORING_CRITERIA = ["MDL", "BDE"]
 # =================================================
 
@@ -48,7 +48,7 @@ def run_inference():
                 "-s", score,
                 "-n", output_path,
                 "-v",
-                #"-l", "3"
+                "-l", "3"
             ]
 
             # executing the command
