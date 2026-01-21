@@ -8,9 +8,9 @@ import re
 import csv
 
 # configuration
-TRUTH_DIR = "Project_Data_Final_3"
-RESULTS_DIR = "Inference_Results_3"
-REPORT_FILE = "Final_Report_Part1_3.csv"
+TRUTH_DIR = "Project_Data_Final_5"
+RESULTS_DIR = "Inference_Results_5"
+REPORT_FILE = "Final_Report_Part1_5.csv"
 
 def parse_ground_truth(filepath):
     """
