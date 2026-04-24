@@ -1,1 +1,1 @@
-To jest projekt na SAD 2.
+Project for Statistical Data Analysis 2 course.
